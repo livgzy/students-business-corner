@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('user_tenants', function (Blueprint $table) {
+            $table->id();
+            $table->string('nim')->unique();
+            $table->string('name');
+            $table->enum('prodi', [
+                "Teknik Informatika", 
+                "Sistem Informasi", 
+                "Manajemen Informatika",
+                "Desian Komunikasi Visual",
+                "Manajemen",
+                "Manajemen Bisnis",
+                "Akutansi",
+            ]);
+            $table->tinyInteger('semester');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('phone')->nullable();
+            $table->boolean('isTenant')->default(false);
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('user_tenants');
+    }
+};
