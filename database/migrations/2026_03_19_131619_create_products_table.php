@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->boolean('is_preorder')->default(false);
             // $table->json('dayPreorder')->nullable();
-            $table->string('product_img');
+            $table->string('product_img')->nullable();
             $table->timestamps();
         });
     }

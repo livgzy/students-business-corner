@@ -6,10 +6,10 @@ use Livewire\Attributes\Validate;
 
 new class extends Component
 {
-    #[Validate('required|min:11|max:15')]
+    #[Validate('required')]
     public $email = '';
     
-    #[Validate('required|min:6')]
+    #[Validate('required')]
     public $password = '';
 
     public function login()

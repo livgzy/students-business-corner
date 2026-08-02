@@ -415,6 +415,7 @@ new class extends Component
                 'tenant_code' => $tenant->tenant_code,
                 'store_name'  => $tenant->store_name,
                 'phone'       => $tenant->phone,
+                'reservation_id' => $tenant->reservation_id, 
             ],
             'user_id' => Auth::id(),
             'status' => 'Pending',

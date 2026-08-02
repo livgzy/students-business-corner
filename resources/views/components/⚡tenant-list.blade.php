@@ -42,7 +42,7 @@ new class extends Component
                             @if($tenant->tenant_img)
                                 <img src="{{ Storage::disk('tsbc_disk')->url($tenant->tenant_img) }}" 
                                      alt="{{ $tenant->store_name }}"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                     class="w-full h-full object-contain group-hover:scale-110 transition duration-300">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-200">
                                     <flux:icon.building-storefront class="size-14 text-orange-500"/>

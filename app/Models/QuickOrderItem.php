@@ -12,6 +12,7 @@ class QuickOrderItem extends Model
     protected $fillable = [
         'quick_order_id',
         'product_id',
+        'price',
         'quantity',
     ];
 

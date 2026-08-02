@@ -125,7 +125,7 @@ new class extends Component
                                 @if($tenant->tenant_img)
                                     <img src="{{ Storage::disk('tsbc_disk')->url($tenant->tenant_img) }}" 
                                          alt="{{ $tenant->store_name }}"
-                                         class="w-14 h-14 rounded-full object-cover">
+                                         class="w-14 h-14 rounded-full object-contain">
                                 @else
                                     <flux:icon.building-storefront class=" text-orange-500"/>
                                 @endif

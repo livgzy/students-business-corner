@@ -163,7 +163,7 @@
                             <!-- User Dropdown -->
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open" class="flex items-center space-x-2 p-1 rounded-full hover:bg-gray-100 transition">
-                                    <img class="w-9 h-9 rounded-full border-2 border-orange-500 object-cover" 
+                                    <img class="w-9 h-9 rounded-full border-2 border-orange-500 object-contain" 
                                          src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name ?? 'Tenant') }}&background=F97316&color=fff&bold=true" 
                                          alt="Avatar">
                                     <div class="hidden md:block text-left">

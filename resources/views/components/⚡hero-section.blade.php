@@ -16,7 +16,7 @@ new class extends Component
                 UCIC Student Business Corner
             </h1>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#featured" class="bg-white text-black-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                <a href="/menu" class="bg-white text-black-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
                     Lihat Menu
                 </a>
                 @guest

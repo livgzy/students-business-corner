@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->boolean('is_preorder')->default(false);
-            $table->string('product_img')->nullable();
+            $table->string('product_img');
             $table->timestamps();
         });
     }

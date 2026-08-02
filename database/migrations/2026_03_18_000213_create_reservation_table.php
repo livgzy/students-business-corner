@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('end_date');
             $table->boolean('statusApprove')->nullable();
             $table->boolean('is_acknowledged')->default(false);
+            $table->timestamp('activated_at')->nullable();
+            $table->boolean('is_ended')->default(false); 
             $table->text('reasons')->nullable();
             $table->timestamps();
         });

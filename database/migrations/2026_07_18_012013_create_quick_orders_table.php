@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('order_number')->unique();
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
             $table->decimal('total_amount', 10, 2);
+            $table->enum('payment_method', ['Tunai', 'Non Tunai']);
             $table->timestamps();
         });
     }

@@ -4,10 +4,12 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithoutUrlPagination;
+
 
 new class extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $statusFilter = 'all';
     public $search = '';
@@ -34,7 +36,7 @@ new class extends Component
             $query->where('order_number', 'like', '%' . $this->search . '%');
         }
 
-        return $query->simplePaginate($this->perPage);
+        return $query->paginate($this->perPage);
     }
 
     public function viewDetail($orderId)
@@ -358,7 +360,7 @@ new class extends Component
 
                 <!-- Pagination -->
                 <div class="mt-6">
-                    {{ $orders->links() }}
+                    {{ $orders->links(data: ['scrollTo' => false]) }}
                 </div>
             @else
                 <!-- Empty State -->

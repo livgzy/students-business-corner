@@ -25,22 +25,13 @@ new class extends Component
 
     public function updatedSelectedDay($day)
     {
-        // $this->selectedTime = '';
-        // $this->availableTimes = [];
+        $today = now()->locale('id')->translatedFormat('l');
 
-        // if (empty($day)) return;
-
-        // $slot = $this->product->tenant->pick_slot->where('dayPickup', $day)->first();
-
-        // if ($slot) {
-        //     $start = \Carbon\Carbon::parse($slot->start_time);
-        //     $end = \Carbon\Carbon::parse($slot->end_time);
-
-        //     while ($start <= $end) {
-        //         $this->availableTimes[] = $start->format('H:i');
-        //         $start->addMinutes(30); 
-        //     }
-        // }
+        if (strcasecmp($day, $today) === 0) {
+            $this->selectedDay = null;
+            $this->addError('selectedDay', 'Hari ini tidak tersedia untuk pickup.');
+            return;
+        }
 
         $this->selectedTime = '';
 
@@ -292,18 +283,29 @@ new class extends Component
                         
                         <div class="flex flex-wrap gap-2">
                             @if($product->tenant->pick_slot->isNotEmpty())
+                                @php
+                                    // ambil nama hari ini dalam Bahasa Indonesia, misal: "Selasa"
+                                    $today = now()->locale('id')->translatedFormat('l');
+                                @endphp
+                        
                                 @foreach($product->tenant->pick_slot as $slot)
-                                    <label class="cursor-pointer">
-                                        <input 
-                                            type="radio" 
-                                            wire:model.live="selectedDay" 
-                                            value="{{ $slot->dayPickup }}" 
+                                    @php
+                                        $isToday = strcasecmp($slot->dayPickup, $today) === 0;
+                                    @endphp
+                        
+                                    <label class="{{ $isToday ? 'cursor-not-allowed' : 'cursor-pointer' }}">
+                                        <input
+                                            type="radio"
+                                            wire:model.live="selectedDay"
+                                            value="{{ $slot->dayPickup }}"
                                             class="peer sr-only"
+                                            @disabled($isToday)
                                         >
                                         <div class="px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-200
-                                            bg-white text-amber-900 border-amber-200 shadow-sm
-                                            peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 peer-checked:shadow-md
-                                            hover:bg-amber-100">
+                                            {{ $isToday
+                                                ? 'bg-gray-100 text-gray-400 border-gray-200 opacity-60'
+                                                : 'bg-white text-amber-900 border-amber-200 shadow-sm hover:bg-amber-100' }}
+                                            peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 peer-checked:shadow-md">
                                             {{ $slot->dayPickup }}
                                         </div>
                                     </label>

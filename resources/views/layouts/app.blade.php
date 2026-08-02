@@ -44,6 +44,7 @@
                                     </button>
                                     <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                         <a href="/my-order" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pesanan Saya</a>
+                                        <a href="/checkout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Checkout</a>
                                         <form method="POST" action="/logout">
                                             @csrf
                                             <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -95,6 +96,9 @@
             
                             <a href="/my-order" class="flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition">
                                 <span>Pesanan Saya</span>
+                            </a>
+                            <a href="/checkout" class="flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition">
+                                <span>Checkout</span>
                             </a>
             
                             <form method="POST" action="/logout" class="px-4">
