@@ -14,17 +14,17 @@
         <div class="min-h-screen">
             <nav class="bg-white shadow-sm sticky top-0 z-50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-16">
+                    <div class="flex justify-between items-center h-20">
                         <!-- Logo Section -->
                         <div class="flex items-center">
-                            @if(file_exists(public_path('storage/logo/ucic_logo.png')))
-                            <a href="/" class="flex items-center">
-                                <img src="{{ asset('storage/logo/ucic_logo.png') }}" 
-                                    alt="Logo" 
-                                    class="h-8 sm:h-10 w-auto object-contain">
-                            </a>
+                            @if(Illuminate\Support\Facades\Storage::disk('tsbc_disk')->exists('logo/logo_ucic.png'))
+                                <a href="/" class="flex items-center py-1 group">
+                                    <img src="{{ Illuminate\Support\Facades\Storage::disk('tsbc_disk')->url('logo/logo_ucic.png') }}" 
+                                        alt="Logo UCIC" 
+                                        class="h-9 sm:h-18 w-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105">
+                                </a>
                             @else
-                                <a href="/" class="text-lg sm:text-xl font-bold text-orange-600">
+                                <a href="/" class="text-lg sm:text-xl font-bold text-orange-600 tracking-tight">
                                     Student Business Corner
                                 </a>
                             @endif
