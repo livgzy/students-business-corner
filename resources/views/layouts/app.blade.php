@@ -23,6 +23,7 @@
                                         alt="Logo UCIC"
                                         class="h-9 sm:h-18 w-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105">
                                 </a>
+                            @else
                                 <a href="/" class="text-lg sm:text-xl font-bold text-orange-600 tracking-tight">
                                     Student Business Corner
                                 </a>
