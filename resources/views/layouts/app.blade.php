@@ -19,8 +19,8 @@
                         <div class="flex items-center">
                             @if(Illuminate\Support\Facades\Storage::disk('tsbc_disk')->exists('logo/logo_ucic.png'))
                                 <a href="/" class="flex items-center py-1 group">
-                                    <img src="{{ Illuminate\Support\Facades\Storage::disk('tsbc_disk')->url('logo/logo_ucic.png') }}" 
-                                        alt="Logo UCIC" 
+                                    <img src="{{ Illuminate\Support\Facades\Storage::disk('tsbc_disk')->temporaryUrl('logo/logo_ucic.png', now()->addMinutes(1)) }}"
+                                        alt="Logo UCIC"
                                         class="h-9 sm:h-18 w-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105">
                                 </a>
                             @else
