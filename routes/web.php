@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BucketFileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/checkout', 'pages::user.checkout');
     Route::livewire('/my-order', 'pages::user.my-order');
 });
+
+Route::get('/files/{path}', [BucketFileController::class, 'show'])
+    ->where('path', '.*')
+    ->name('bucket.file');
 
 
 // Route::middleware(['auth', 'can:access-tenant'])->group(function () {
