@@ -7,7 +7,6 @@
         <title>{{ $title ?? config('app.name') }}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        
         @livewireStyles
     </head>
     <body class="font-sans antialiased bg-gray-50">
@@ -176,9 +175,7 @@
                 </div>
             </footer>
         </div>
-
         @livewireScripts
-        @fluxScripts
         <script>
             const mobileMenuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobileMenu');
