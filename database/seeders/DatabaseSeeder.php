@@ -745,7 +745,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' =>  now(),
             ],
             [
-                'tenant_id' => 1,
+                'tenant_id' => 2,
                 'dayPickup' => 'Senin',
                 'start_time' => '08:00:00',
                 'end_time' => '14:00:00',
