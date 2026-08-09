@@ -593,6 +593,18 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(), 
             ],
+            [
+                'tenant_code' => 'C',
+                'reservation_id' => null,        
+                'store_name' => null,        
+                'slug' => null,      
+                'description' => null,        
+                'phone' => null,    
+                'is_open' => 0,    
+                'tenant_img' => null,   
+                'created_at' => now(),
+                'updated_at' => now(), 
+            ],
         ]);
 
         Product::insert([
