@@ -7,9 +7,9 @@
         <title>{{ $title ?? config('app.name') }}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        @livewireStyles
+        
         @fluxAppearance
+        @livewireStyles
     </head>
     <body class="font-sans antialiased bg-gray-50">
         <div class="min-h-screen">
