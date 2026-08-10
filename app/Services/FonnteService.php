@@ -6,7 +6,6 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-
 class FonnteService
 {
     public static function sendOrderNotification(Order $order): void
