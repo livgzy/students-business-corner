@@ -648,7 +648,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' =>  now(),
             ],
             [
-                'tenant_id' => 2,
+                'tenant_id' => 1,
                 'category_id' => 2,
                 'name' => 'Es Jeruk',
                 'slug' => 'es-jeruk',
