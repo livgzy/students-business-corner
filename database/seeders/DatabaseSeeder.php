@@ -168,6 +168,19 @@ class DatabaseSeeder extends Seeder
                 'isTenant' => 0,
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'nim' => '20241290008',
+                'name' => 'Marcellino Standlie',
+                'prodi' => 'Teknik Informatika',
+                'semester' => '6',
+                'email' => 'marcel@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'phone' => '081953312187',
+                'isTenant' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
 
@@ -237,7 +250,20 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2026-08-01 09:44:11',
                 'updated_at' => '2026-08-01 10:24:21', 
             ],
-            // 6. created_at: 2026-08-05 09:30:00 (ID Auto-increment: 6) Reject
+            // 6. created_at: 2026-08-01 09:44:11 (ID Auto-increment: 6) Aktif
+            [
+                'user_id' => 6,
+                'start_date' => '2026-08-01',        
+                'end_date' => '2026-08-11',        
+                'statusApprove' => 1,        
+                'is_acknowledged' => 0,        
+                'activated_at' => '2026-08-01 10:24:21',    
+                'is_ended' => 0,    
+                'reasons' => null,   
+                'created_at' => '2026-08-01 09:44:11',
+                'updated_at' => '2026-08-01 10:24:21', 
+            ],
+            // 7. created_at: 2026-08-05 09:30:00 (ID Auto-increment: 7) Reject
             [
                 'user_id' => 5,
                 'start_date' => '2026-08-05',        
@@ -313,10 +339,22 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2026-08-01 09:44:11',
                 'updated_at' => '2026-08-01 09:44:11', 
             ],
-            // Tenant ID: 6 (Reservasi ID 6 - Reject)
+            // Tenant ID: 6 (Reservasi ID 6 - Aktif)
             [
                 'tenant_code' => 'C',
                 'reservation_id' => 6,
+                'store_name' => "Seblak Bahagia",        
+                'slug' => "seblak-bahagia",        
+                'description' => 'Seblak & Sate Asin',        
+                'phone' => '081953312187',    
+                'tenant_img' => 'approval_tenant/seblak-bahagia.jpg',   
+                'created_at' => '2026-08-01 09:44:11',
+                'updated_at' => '2026-08-01 09:44:11', 
+            ],
+            // Tenant ID: 7 (Reservasi ID 7 - Reject)
+            [
+                'tenant_code' => 'C',
+                'reservation_id' => 7,
                 'store_name' => 'Mol Cimol',        
                 'slug' => 'mol-cimol',        
                 'description' => 'Cimol Kuah Keju Creamy',        
@@ -324,7 +362,7 @@ class DatabaseSeeder extends Seeder
                 'tenant_img' => 'approval_tenant/mol-cimol.png',   
                 'created_at' => '2026-08-05 09:30:00',
                 'updated_at' => '2026-08-05 09:30:00', 
-            ],
+            ]     
         ]);
         
         ApprovalMenu::insert([
@@ -541,9 +579,34 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2026-08-01 09:44:11',
                 'updated_at' => '2026-08-01 09:44:11',
             ],
-            // Tenant ID 6: Mol Cimol (Reservasi ID 6: 2026-08-05 09:30:00)
+            // Tenant ID 6: Seblak Bahagia (Reservasi ID 6: 2026-08-01 09:30:00)
             [
                 'tenant_id' => 6,
+                'category_id' => 1,
+                'name' => 'Seblak Kuah Original',
+                'slug' => 'seblak-kuah-original',
+                'description' => 'Seblak Kuah Original',
+                'price' => 5000.00,
+                'is_preorder' => 0,
+                'product_img' => 'approval_menu/seblak-kuah-original.webp',
+                'created_at' => '2026-08-01 09:44:11',
+                'updated_at' => '2026-08-01 09:44:11',
+            ],
+            [
+                'tenant_id' => 6,
+                'category_id' => 1,
+                'name' => 'Seblak Kuah Kari',
+                'slug' => 'seblak-kuah-kari',
+                'description' => 'Seblak Kuah Kari',
+                'price' => 10000.00,
+                'is_preorder' => 0,
+                'product_img' => 'approval_menu/seblak-kuah-kari.webp',
+                'created_at' => '2026-08-01 09:44:11',
+                'updated_at' => '2026-08-01 09:44:11',
+            ],
+            // Tenant ID 7: Mol Cimol (Reservasi ID 7: 2026-08-05 09:30:00)
+            [
+                'tenant_id' => 7,
                 'category_id' => 1,
                 'name' => 'Cimol Isi Keju',
                 'slug' => 'cimol-isi-keju',
@@ -555,7 +618,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => '2026-08-05 09:30:00',
             ],
             [
-                'tenant_id' => 6,
+                'tenant_id' => 7,
                 'category_id' => 1,
                 'name' => 'Cimol Kuah Keju',
                 'slug' => 'cimol-kuah-keju',
