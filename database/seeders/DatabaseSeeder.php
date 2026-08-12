@@ -170,7 +170,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nim' => '20241290008',
+                'nim' => '20231020008',
                 'name' => 'Marcellino Standlie',
                 'prodi' => 'Teknik Informatika',
                 'semester' => '6',
@@ -178,7 +178,7 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'phone' => '081953312187',
-                'isTenant' => 0,
+                'isTenant' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
@@ -891,7 +891,7 @@ class DatabaseSeeder extends Seeder
                 'name_payment' => 'QRIS',        
                 'account_number' => null,        
                 'account_name' => 'Marcellino Standlie',        
-                'qr_img' => 'payment_qr/qris_e.jpg',    
+                'qr_img' => 'payment_qr/qris_3.jpg',    
                 'is_active' => 1,  
                 'created_at' => now(),
                 'updated_at' => now(),  
