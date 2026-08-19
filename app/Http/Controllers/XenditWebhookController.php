@@ -36,7 +36,6 @@ class XenditWebhookController extends Controller
         }
  
         $batch->update(['xendit_status' => $status]);
- 
         match ($status) {
             'SUCCEEDED'          => $batch->markAsPaid(),
             'EXPIRED', 'FAILED'  => $batch->markAsExpired(),
