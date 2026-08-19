@@ -39,4 +39,10 @@ return [
         'token' => env('FONNTE_TOKEN')
     ],
 
+    'xendit' => [
+        'secret_key'    => env('XENDIT_SECRET_KEY'),
+        'webhook_token' => env('XENDIT_WEBHOOK_TOKEN'),
+        'test_mode'     => env('XENDIT_TEST_MODE', true),
+    ],
+
 ];

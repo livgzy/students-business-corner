@@ -13,32 +13,35 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            // Kode unique Order per tenant
             $table->string('order_number')->unique();
-            // $table->foreignId('tenant_id')->nullable()->constrained('tenants')->onDelete('set null');
             // Berisi tenant_code, store_name, phone
             $table->json('data_tenant');
-            $table->foreignId('user_id')->constrained()->nullable();
+            $table->foreignId('reservation_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->enum('order_type', ['reguler', 'pre_order'])->default('reguler');
             $table->enum('status', [
-                'Pending', 
-                // 'Diterima', 
-                'Diproses', 
-                'Siap Diambil', 
-                'Selesai', 
+                'Pending',
+                'Diproses',
+                'Selesai',
                 'Dibatalkan'
             ])->default('Pending');
+ 
             $table->decimal('total_amount', 10, 2);
-            $table->enum('payment_status', ['Belum Dibayar', 'Menunggu Konfirmasi','Sudah Dibayar'])->default('Belum Dibayar');
+            $table->enum('payment_status', ['Belum Dibayar', 'Menunggu Konfirmasi', 'Sudah Dibayar'])->default('Belum Dibayar');
             $table->enum('payment_method', ['Tunai', 'Non Tunai']);
-            $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods')->onDelete('set null');
-            // Berisi type, name_payment
-            $table->json('data_payment_method')->nullable();
-            $table->time('pickup_time');
+            // FIX: nullable, tidak wajib diisi di awal untuk order reguler
+            $table->time('pickup_time')->nullable();
             $table->foreignId('pickup_slot_id')->nullable()->constrained('pickup_slots')->onDelete('set null');
             // Berisi dayPickup, start_time, end_time
-            $table->json('data_pickup_slot');
-            // Untuk payment_method non tunai
-            $table->string('payment_proof_img')->nullable();
+            $table->json('data_pickup_slot')->nullable();
+            // Untuk payment_method non tunai (opsional, kalau masih ingin simpan bukti manual)
+            // $table->string('payment_proof_img')->nullable();
+            // $table->string('xendit_external_id')->nullable()->unique();
+            // $table->string('xendit_qr_id')->nullable();
+            // $table->string('xendit_status')->nullable();
+            // $table->timestamp('paid_at')->nullable();
+            // $table->timestamp('expired_at')->nullable();
+            $table->foreignId('payment_batch_id')->nullable()->constrained('payment_batches')->onDelete('set null');
             $table->timestamps();
         });
     }

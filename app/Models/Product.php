@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'tenant_id',
+        'reservation_id',
         'category_id',
         'name',
         'slug',
@@ -18,7 +20,6 @@ class Product extends Model
         'price',
         'is_available',
         'is_preorder',
-        // 'dayPreorder',
         'product_img',
     ];
 
@@ -31,6 +32,11 @@ class Product extends Model
     public function tenant()
     {
         return $this->belongsTo(Tenant::class,  "tenant_id");
+    }
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
     }
 
     public function category()

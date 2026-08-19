@@ -71,11 +71,6 @@ new class extends Component
                 'dot'    => 'bg-blue-500',
                 'border' => 'border-l-blue-400',
             ],
-            'Siap Diambil' => [
-                'badge'  => 'bg-green-50 text-green-700 ring-1 ring-green-200',
-                'dot'    => 'bg-green-500',
-                'border' => 'border-l-green-400',
-            ],
             'Selesai' => [
                 'badge'  => 'bg-gray-100 text-gray-700 ring-1 ring-gray-200',
                 'dot'    => 'bg-gray-500',
@@ -237,7 +232,6 @@ new class extends Component
                             <option value="all">Semua Status</option>
                             <option value="Pending">Pending</option>
                             <option value="Diproses">Diproses</option>
-                            <option value="Siap Diambil">Siap Diambil</option>
                             <option value="Selesai">Selesai</option>
                             <option value="Dibatalkan">Dibatalkan</option>
                         </select>
@@ -388,7 +382,7 @@ new class extends Component
         @php
             $tenant = $selectedOrder->data_tenant ?? [];
             $pickupSlot = $selectedOrder->data_pickup_slot ?? [];
-            $steps = ['Pending', 'Diproses', 'Siap Diambil', 'Selesai'];
+            $steps = ['Pending', 'Diproses', 'Selesai'];
             $currentStepIndex = array_search($selectedOrder->status, $steps);
         @endphp
         <div
@@ -590,63 +584,7 @@ new class extends Component
                         <div class="pt-2 flex justify-between items-center bg-orange-50 rounded-xl px-4 py-3.5">
                             <span class="text-base font-semibold text-gray-800">Total Pembayaran</span>
                             <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($selectedOrder->total_amount, 0, ',', '.') }}</span>
-                        </div>
-
-                        <!-- Payment Proof -->
-                        @if($selectedOrder->payment_proof_img)
-                            <div class="border-t border-gray-100 pt-4" x-data="{ showImagePreview: false }">
-                                <p class="text-sm font-semibold text-gray-700 mb-2">Bukti Pembayaran</p>
-
-                                <button type="button" @click="showImagePreview = true" class="group relative inline-block">
-                                    <img src="{{ Storage::disk('tsbc_disk')->url($selectedOrder->payment_proof_img) }}"
-                                         alt="Bukti Pembayaran"
-                                         class="max-h-48 rounded-xl border border-gray-200 transition group-hover:brightness-90">
-                                    <span class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 rounded-xl transition">
-                                        <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.35 4.35a7.5 7.5 0 0012.3 12.3zM10.5 7.5v6m-3-3h6"></path>
-                                        </svg>
-                                    </span>
-                                </button>
-
-                                <!-- Image Lightbox -->
-                                <div
-                                    x-show="showImagePreview"
-                                    x-cloak
-                                    @keydown.escape.window="showImagePreview = false"
-                                    x-transition:enter="transition ease-out duration-200"
-                                    x-transition:enter-start="opacity-0"
-                                    x-transition:enter-end="opacity-100"
-                                    x-transition:leave="transition ease-in duration-150"
-                                    x-transition:leave-start="opacity-100"
-                                    x-transition:leave-end="opacity-0"
-                                    class="fixed inset-0 z-[60] flex items-center justify-center p-4"
-                                    style="display: none;"
-                                >
-                                    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="showImagePreview = false"></div>
-
-                                    <div
-                                        x-show="showImagePreview"
-                                        x-transition:enter="transition ease-out duration-200"
-                                        x-transition:enter-start="opacity-0 scale-95"
-                                        x-transition:enter-end="opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-150"
-                                        x-transition:leave-start="opacity-100 scale-100"
-                                        x-transition:leave-end="opacity-0 scale-95"
-                                        class="relative max-w-3xl w-full"
-                                    >
-                                        <button type="button" @click="showImagePreview = false"
-                                                class="absolute -top-10 right-0 text-white/80 hover:text-white transition">
-                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                            </svg>
-                                        </button>
-                                        <img src="{{ Storage::disk('tsbc_disk')->url($selectedOrder->payment_proof_img) }}"
-                                             alt="Bukti Pembayaran"
-                                             class="w-full max-h-[85vh] object-contain rounded-xl shadow-2xl">
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                        </div>                        
                     </div>
 
                     <!-- Footer -->

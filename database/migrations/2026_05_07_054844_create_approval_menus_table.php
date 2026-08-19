@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('approval_menus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tenant_id')->constrained('approval_tenants', 'id')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();

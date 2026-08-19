@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->nullable();
+            // BARU: snapshot periode reservasi saat produk dibuat, agar tetap bisa
+            // ditelusuri per periode sewa meski slot tenant dipakai ulang tenant lain
+            $table->foreignId('reservation_id')->nullable()->constrained('reservations')->onDelete('set null');
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
@@ -22,9 +25,9 @@ return new class extends Migration
             // $table->integer('stock')->default(0);
             $table->boolean('is_available')->default(true);
             $table->boolean('is_preorder')->default(false);
-            // $table->json('dayPreorder')->nullable();
             $table->string('product_img')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

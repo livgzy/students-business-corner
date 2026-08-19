@@ -25,19 +25,9 @@ class Tenant extends Model
         'is_open' => 'boolean',
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
     public function products()
     {
         return $this->hasMany(Product::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
     }
 
     public function reservation()
@@ -45,13 +35,18 @@ class Tenant extends Model
         return $this->belongsTo(Reservation::class);
     }
 
-    public function payment_method()
-    {
-        return $this->hasMany(PaymentMethod::class);
-    }
+    // public function payment_method()
+    // {
+    //     return $this->hasOne(PaymentMethod::class);
+    // }
 
     public function pick_slot()
     {
         return $this->hasMany(PickupSlot::class, 'tenant_id');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(TenantHistory::class, 'tenant_code', 'tenant_code');
     }
 }

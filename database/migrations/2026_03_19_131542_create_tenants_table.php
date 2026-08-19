@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('tenant_code', 1)->unique();
             // $table->foreignId('user_id')->constrained();
             // $table->foreignId('reservation_id')->constrained()->nullable()->unique();
-            $table->foreignId('reservation_id')->nullable()->constrained('reservations')->onDelete('set null');
+            $table->foreignId('reservation_id')->nullable()->unique()->constrained('reservations')->onDelete('set null');
             $table->string('store_name')->nullable();
             $table->string('slug')->nullable()->unique();
             $table->text('description')->nullable();

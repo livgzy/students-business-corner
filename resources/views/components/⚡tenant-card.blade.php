@@ -31,23 +31,37 @@ new class extends Component
         $product = Product::with('tenant')->find($productId);
 
         if (!$product) {
-            $this->dispatch('notify', 
-                message: "Produk tidak ditemukan", 
-                type: 'error'
-            );
+            $this->dispatch('notify', message: "Produk tidak ditemukan", type: 'error');
             return;
         }
 
         if (!$product->is_available || !$product->tenant->is_open) {
-            $this->dispatch('notify', 
-                message: "Maaf, produk ini sedang tidak tersedia", 
-                type: 'error'
-            );
+            $this->dispatch('notify', message: "Maaf, produk ini sedang tidak tersedia", type: 'error');
             return;
         }
 
         $cart = session()->get('cart', []);
         $itemKey = $product->id;
+        $isPreorder = (bool) $product->is_preorder;
+
+        $tenantItems = collect($cart)->where('tenant_id', $product->tenant_id);
+
+        if ($tenantItems->isNotEmpty()) {
+            $hasDifferentOrderType = $tenantItems->contains(function ($item) use ($isPreorder) {
+                return (bool) ($item['is_preorder'] ?? false) !== $isPreorder;
+            });
+
+            if ($hasDifferentOrderType) {
+                $existingType = $tenantItems->first()['is_preorder'] ?? false;
+
+                $message = $existingType
+                    ? "Tenant {$product->tenant->store_name} sudah memiliki menu Pre-order. Menu biasa tidak dapat ditambahkan ke tenant yang sama."
+                    : "Tenant {$product->tenant->store_name} sudah memiliki menu Order biasa. Menu Pre-order tidak dapat ditambahkan ke tenant yang sama.";
+
+                $this->dispatch('notify', message: $message, type: 'error');
+                return;
+            }
+        }
 
         if (isset($cart[$itemKey])) {
             $cart[$itemKey]['quantity'] += 1;
@@ -61,6 +75,7 @@ new class extends Component
                 'tenant_id' => $product->tenant_id,
                 'tenant_name' => $product->tenant->store_name,
                 'tenant_code' => $product->tenant->tenant_code,
+                'is_preorder' => $isPreorder,
                 'notes' => '',
                 'selectedDay' => '',
                 'selectedTime' => '',
@@ -71,12 +86,8 @@ new class extends Component
 
         $this->dispatch('cartUpdated');
 
-        $this->dispatch('notify', 
-            message: "{$product->name} berhasil ditambahkan ke keranjang!", 
-            type: 'success'
-        );
+        $this->dispatch('notify', message: "{$product->name} berhasil ditambahkan ke keranjang!", type: 'success');
     }
-
     #[On('echo:products,ProductAvailabilityChanged')]
     public function handleProductStatusUpdated($event)
     {
@@ -242,11 +253,32 @@ new class extends Component
                                                         </div>
                                                     </div>
                                                     @else
-                                                    <div class="flex items-center space-x-1 text-xs text-gray-500 pb-1">
-                                                        <flux:icon.hand-platter class="size-4 shrink-0" />
-                                                        <span class="text-[11px] truncate">Ready-To Serve</span>
+                                                    <div class="flex items-center space-x-1 text-xs text-gray-500">
+                                                        <flux:icon.hand-platter class="size-4" />
+                                                        <span>Ready-To Serve</span>
                                                     </div>
-                                                    @endif                                              
+                                                
+                                                    @auth
+                                                        <button
+                                                            wire:click="addToCart({{ $product->id }})"
+                                                            wire:loading.attr="disabled"
+                                                            wire:target="addToCart({{ $product->id }})"
+                                                            class="cursor-pointer bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-700 transition flex items-center gap-1"
+                                                        >
+                                                            <flux:icon.loading
+                                                                class="size-5"
+                                                                wire:loading
+                                                                wire:target="addToCart({{ $product->id }})"
+                                                            />
+                                                            <flux:icon.plus
+                                                                class="size-5"
+                                                                wire:loading.remove
+                                                                wire:target="addToCart({{ $product->id }})"
+                                                            />
+                                                            Pesan
+                                                        </button>
+                                                    @endauth
+                                                @endif                                              
                                                 </div>
                                                     @auth 
                                                     @if ($product->tenant->pick_slot->isNotEmpty() && $product->is_preorder)                                                               

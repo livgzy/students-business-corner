@@ -8,6 +8,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
+        
     </head>
     <body class="font-sans antialiased bg-gray-50">
         <div class="min-h-screen">
@@ -190,5 +191,6 @@
                 });
             }
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     </body>
 </html>

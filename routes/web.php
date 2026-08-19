@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BucketFileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\XenditWebhookController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,6 +36,7 @@ Route::get('/files/{path}', [BucketFileController::class, 'show'])
     ->where('path', '.*')
     ->name('bucket.file');
 
+Route::post('/webhooks/xendit', [XenditWebhookController::class, 'handle'])->name('webhooks.xendit');
 
 // Route::middleware(['auth', 'can:access-tenant'])->group(function () {
 //     Route::livewire('/tenants/dashboard', 'pages::dashboard.dashboard-tenant')->name('tenant.dashboard');

@@ -21,6 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
                      Request::HEADER_X_FORWARDED_PORT |
                      Request::HEADER_X_FORWARDED_PROTO
         );
+        $middleware->preventRequestForgery(except: [
+            'webhooks/xendit',
+        ]);
     })
     // ->withSchedule(function (Schedule $schedule) {
     //     $schedule->command('orders:cancel-expired')->everyMinute();

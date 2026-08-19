@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quick_orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('order_number')->unique();
-            $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
-            $table->decimal('total_amount', 10, 2);
-            $table->enum('payment_method', ['Tunai', 'Non Tunai']);
-            $table->timestamps();
-        });
+        // Schema::create('quick_orders', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('order_number')->unique();
+        //     $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
+        //     $table->decimal('total_amount', 10, 2);
+        //     $table->enum('payment_method', ['Tunai', 'Non Tunai']);
+        //     $table->timestamps();
+        // });
     }
 
     /**

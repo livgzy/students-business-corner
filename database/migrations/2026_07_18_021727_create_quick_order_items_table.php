@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quick_order_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('quick_order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
-            $table->integer('quantity');
-            $table->timestamps();
-        });
+        // Schema::create('quick_order_items', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('quick_order_id')->constrained()->onDelete('cascade');
+        //     $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
+        //     $table->integer('quantity');
+        //     $table->timestamps();
+        // });
     }
 
     /**
