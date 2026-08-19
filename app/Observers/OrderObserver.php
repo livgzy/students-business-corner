@@ -23,9 +23,9 @@ class OrderObserver
             return;
         }
  
-        $wallet = $order->reservation?->tenantWallet;
+        $wallet = $order->reservation->tenantWallet;
  
-        $wallet?->recalculateEarnings();
+        $wallet->recalculateEarnings();
     }
 
     /**

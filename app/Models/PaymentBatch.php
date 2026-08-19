@@ -61,9 +61,9 @@ class PaymentBatch extends Model
                 'paid_at' => now(),
             ]);
  
-            $this->orders()->update([
-                'payment_status' => 'Sudah Dibayar',
-            ]);
+            $this->orders()->get()->each(
+                fn (Order $order) => $order->update(['payment_status' => 'Sudah Dibayar'])
+            );
         });
  
         $this->orders->each(

@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
-use App\Models\Order;
+use App\Models\PaymentBatch;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -11,9 +11,8 @@ Artisan::command('inspire', function () {
 
 
 Schedule::call(function () {
-    Order::where('status', 'Pending')
-        ->where('payment_method', 'Non Tunai')
-        ->whereNull('payment_proof_img')
-        ->where('created_at', '<=', now()->subMinutes(30))
-        ->update(['status' => 'Dibatalkan']);
-})->everyMinute();
+    PaymentBatch::where('status', 'Pending')
+        ->where('expired_at', '<=', now())
+        ->get()
+        ->each(fn (PaymentBatch $batch) => $batch->markAsExpired());
+})->everyMinute()->withoutOverlapping();

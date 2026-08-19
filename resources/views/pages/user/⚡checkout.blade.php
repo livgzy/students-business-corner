@@ -176,7 +176,7 @@ new class extends Component
                             <div class="p-5 space-y-5">
                                 <template x-if="!expired">
                                     <div class="flex flex-col items-center gap-3">
-                                        <div x-ref="qrCanvas" class="p-3 bg-white border border-gray-200 rounded-xl"></div>
+                                        <div x-ref="qrCanvas" wire:ignore class="p-3 bg-white border border-gray-200 rounded-xl"></div>
                                         <p class="text-sm text-gray-500 text-center max-w-sm">
                                             Scan pakai aplikasi e-wallet atau mobile banking apa saja yang mendukung QRIS —
                                             GoPay, OVO, DANA, ShopeePay, m-Banking BCA/Mandiri, dll.
@@ -186,7 +186,7 @@ new class extends Component
                                             <button wire:click="simulatePayment({{ $batch->id }})"
                                                     wire:loading.attr="disabled"
                                                     class="text-xs px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 hover:bg-amber-200 transition">
-                                                🧪 Simulasikan Pembayaran (Test Mode)
+                                                Simulasikan Pembayaran (Test Mode)
                                             </button>
                                         @endif
 
