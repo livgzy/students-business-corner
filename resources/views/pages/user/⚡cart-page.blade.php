@@ -440,16 +440,16 @@ new class extends Component
         $this->dispatch('cartUpdated');
 
         if ($nonTunaiOrders->isNotEmpty()) {
-            // return redirect('/checkout');
+            return redirect('/checkout');
         }
 
-        // $this->dispatch(
-        //     'notify',
-        //     message: 'Menu Tenant Berhasil Di Order.',
-        //     type: 'success'
-        // );
+        $this->dispatch(
+            'notify',
+            message: 'Menu Tenant Berhasil Di Order.',
+            type: 'success'
+        );
 
-        // return redirect('/my-order');
+        return redirect('/my-order');
     }
 
     private function createPaymentBatch($orders)
