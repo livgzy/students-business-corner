@@ -15,4 +15,6 @@ Schedule::call(function () {
         ->where('expired_at', '<=', now())
         ->get()
         ->each(fn (PaymentBatch $batch) => $batch->markAsExpired());
-})->everyMinute()->withoutOverlapping();
+})->name('expire-payment-batches')
+->everyMinute()
+->withoutOverlapping();
