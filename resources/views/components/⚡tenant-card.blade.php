@@ -252,7 +252,7 @@ new class extends Component
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    @else
+                                                @else
                                                     <div class="flex items-center justify-between w-full gap-2">
                                                         {{-- Status Ready-To-Serve --}}
                                                         <div class="flex items-center space-x-1 text-xs text-gray-500 min-w-0">
