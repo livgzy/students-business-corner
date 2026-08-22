@@ -13,6 +13,8 @@ class Payout extends Model
         'tenant_wallet_id',
         'user_id',
         'amount',
+        'fee_amount',
+        'net_amount',
         'payment_method_id',
         'data_payment_method',
         'status',

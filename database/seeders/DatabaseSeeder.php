@@ -11,6 +11,7 @@ use App\Models\PickupSlot;
 use App\Models\Product;
 use App\Models\Reservation;
 use App\Models\Tenant;
+use App\Models\TenantHistory;
 use App\Models\TenantWallet;
 use App\Models\User;
 use App\Models\UserTenant;
@@ -672,6 +673,99 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::insert([
+            // Tenant ID 1: Foodbox (Reservasi ID 1: 2026-07-05 08:00:00)
+            [
+                'tenant_id' => 3,
+                'reservation_id' => 1,
+                'category_id' => 1,
+                'name' => 'Foodbox Ayam Geprek',
+                'slug' => 'foodbox-ayam-geprek',
+                'description' => 'Nasi + Ayam Geprek + Sambal',
+                'price' => 15000.00,
+                'is_available' => 1,
+                'is_preorder' => 1,
+                'product_img' => 'products/foodbox-ayam-geprek.jpeg',
+                'created_at' => '2026-07-05 08:00:00',
+                'updated_at' => '2026-07-05 08:00:00',
+                'deleted_at' => now(),
+            ],
+            [
+                'tenant_id' => 3,
+                'reservation_id' => 1,
+                'category_id' => 1,
+                'name' => 'Foodbox Ayam Bakar',
+                'slug' => 'foodbox-ayam-bakar',
+                'description' => 'Nasi + Ayam Bakar + Lalapan + Sambal',
+                'price' => 15000.00,
+                'is_available' => 1,
+                'is_preorder' => 1,
+                'product_img' => 'products/foodbox-ayam-bakar.jpg',
+                'created_at' => '2026-07-05 08:00:00',
+                'updated_at' => '2026-07-05 08:00:00',
+                'deleted_at' => now(),
+            ],
+            [
+                'tenant_id' => 3,
+                'reservation_id' => 1,
+                'category_id' => 2,
+                'name' => 'Es Teh Manis',
+                'slug' => 'es-teh-manis',
+                'description' => null,
+                'price' => 3000.00,
+                'is_available' => 1,
+                'is_preorder' => 0,
+                'product_img' => 'products/es-teh-manis.webp',
+                'created_at' => '2026-07-05 08:00:00',
+                'updated_at' => '2026-07-05 08:00:00',
+                'deleted_at' => now(),
+            ],
+        
+            // Tenant ID 2: Foodbox 2 (Reservasi ID 2: 2026-07-06 08:00:00)
+            [
+                'tenant_id' => 2,
+                'reservation_id' => 2,
+                'category_id' => 1,
+                'name' => 'Foodbox Ayam Geprek',
+                'slug' => 'foodbox-2-ayam-geprek',
+                'description' => 'Nasi + Ayam Geprek + Sambal',
+                'price' => 15000.00,
+                'is_available' => 1,
+                'is_preorder' => 1,
+                'product_img' => 'products/foodbox-2-ayam-geprek.jpeg',
+                'created_at' => '2026-07-06 08:00:00',
+                'updated_at' => '2026-07-06 08:00:00',
+                'deleted_at' => now(),
+            ],
+            [
+                'tenant_id' => 2,
+                'reservation_id' => 2,
+                'category_id' => 1,
+                'name' => 'Foodbox Ayam Bakar',
+                'slug' => 'foodbox-2-ayam-bakar',
+                'description' => 'Nasi + Ayam Bakar + Lalapan + Sambal',
+                'price' => 17000.00,
+                'is_available' => 1,
+                'is_preorder' => 1,
+                'product_img' => 'products/foodbox-2-ayam-bakar.jpg',
+                'created_at' => '2026-07-06 08:00:00',
+                'updated_at' => '2026-07-06 08:00:00',
+                'deleted_at' => now(),
+            ],
+            [
+                'tenant_id' => 2,
+                'reservation_id' => 2,
+                'category_id' => 2,
+                'name' => 'Es Teh Manis',
+                'slug' => 'es-teh-manis-2',
+                'description' => null,
+                'price' => 3000.00,
+                'is_available' => 1,
+                'is_preorder' => 0,
+                'product_img' => 'products/es-teh-manis-2.webp',
+                'created_at' => '2026-07-06 08:00:00',
+                'updated_at' => '2026-07-06 08:00:00',
+                'deleted_at' => now(),
+            ],
             [
                 'tenant_id' => 1,
                 'reservation_id' => 4,
@@ -685,6 +779,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/rice-bowl-asam-manis.jpeg',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 1,
@@ -699,6 +794,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/rice-bowl-bbq.jpeg',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 1,
@@ -713,6 +809,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/rice-bowl-chili-padi.webp',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 1,
@@ -727,6 +824,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/es-jeruk.jpg',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 2,
@@ -741,6 +839,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/dimsum-original.jpg',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 2,
@@ -755,6 +854,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/ice-tea.jpg',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 2,
@@ -769,6 +869,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/dimsun-mentai.webp',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 2,
@@ -783,6 +884,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/dimsum-keju-lumer.webp',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 2,
@@ -797,6 +899,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/kentang-goreng.png',
                 'created_at' =>  now(),
                 'updated_at' =>  now(),
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 3,
@@ -811,6 +914,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/seblak-kuah-original.webp',
                 'created_at' => '2026-08-01 09:44:11',
                 'updated_at' => '2026-08-01 09:44:11',
+                'deleted_at' => null,
             ],
             [
                 'tenant_id' => 3,
@@ -825,6 +929,7 @@ class DatabaseSeeder extends Seeder
                 'product_img' => 'products/seblak-kuah-kari.webp',
                 'created_at' => '2026-08-01 09:44:11',
                 'updated_at' => '2026-08-01 09:44:11',
+                'deleted_at' => null,
             ],
         ]);
 
@@ -847,38 +952,39 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        PaymentMethod::insert([
-            [
-                // 'tenant_id' => 1,
-                'reservation_id' => 4,
-                'type' => 'e_wallet',        
-                'name_payment' => 'Dana',        
-                'account_number' => '081953312187',        
-                'account_name' => 'Dennis Saputra',        
-                'created_at' => now(),
-                'updated_at' => now(),  
-            ],
-            [
-                // 'tenant_id' => 2,
-                'reservation_id' => 5,
-                'type' => 'bank_transfer',        
-                'name_payment' => 'BCA',        
-                'account_number' => '6404284274658',        
-                'account_name' => 'Tio Mayesa',        
-                'created_at' => now(),
-                'updated_at' => now(),  
-            ],
-            [
-                // 'tenant_id' => 3,
-                'reservation_id' => 6,
-                'type' => 'e_wallet',        
-                'name_payment' => 'Dana',        
-                'account_number' => '081953312187',        
-                'account_name' => 'Marcellino Standlie',        
-                'created_at' => now(),
-                'updated_at' => now(),  
-            ],
-        ]);
+        // PaymentMethod::insert([
+        //     [
+        //         // 'tenant_id' => 1,
+        //         'reservation_id' => 4,
+        //         'type' => 'e_wallet',        
+        //         'name_payment' => 'Dana',        
+        //         'account_number' => '081953312187',        
+        //         'account_name' => 'Dennis Saputra',        
+        //         'created_at' => now(),
+        //         'updated_at' => now(),  
+        //     ],
+        //     [
+        //         // 'tenant_id' => 2,
+        //         'reservation_id' => 5,
+        //         'type' => 'bank_transfer',        
+        //         'name_payment' => 'BCA',        
+        //         'account_number' => '6404284274658',        
+        //         'account_name' => 'Tio Mayesa',        
+        //         'created_at' => now(),
+        //         'updated_at' => now(),  
+        //     ],
+        //     [
+        //         // 'tenant_id' => 3,
+        //         'reservation_id' => 6,
+        //         'type' => 'e_wallet',        
+        //         'name_payment' => 'Dana',        
+        //         'account_number' => '081953312187',        
+        //         'account_name' => 'Marcellino Standlie',        
+        //         'created_at' => now(),
+        //         'updated_at' => now(), 
+                 
+        //     ],
+        // ]);
 
         TenantWallet::insert([
             [
@@ -906,6 +1012,33 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),  
             ],
         ]);
+        
+        TenantHistory::insert([
+            [
+                'tenant_code' => 'C',
+                'reservation_id' => 1,
+                'store_name' => 'Food box',        
+                'slug' => 'food-box',        
+                'description' => 'Food box - Menyediakan Aneka Menu Box Makanan Siap Saji',        
+                'phone' => '081953312187',    
+                'tenant_img' => 'approval_tenant/food-box.jpg',   
+                'created_at' => '2026-07-05 08:00:00',
+                'updated_at' => '2026-07-05 08:00:00', 
+            ],
+            // Tenant ID: 2 (Reservasi ID 2 - Ended)
+            [
+                'tenant_code' => 'B',
+                'reservation_id' => 2,
+                'store_name' => 'Food box 2',        
+                'slug' => 'food-box-2',        
+                'description' => 'Food box - Menyediakan Aneka Menu Box Makanan Siap Saji',        
+                'phone' => '081953312187',    
+                'tenant_img' => 'approval_tenant/food-box-2.jpg',   
+                'created_at' => '2026-07-06 08:00:00',
+                'updated_at' => '2026-07-06 08:00:00', 
+            ],
+        ]);
+
         
         // $this->call([
         //     ReservationSeeder::class,

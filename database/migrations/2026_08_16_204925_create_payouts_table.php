@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('tenant_wallet_id')->constrained('tenant_wallets')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('user_tenants')->onDelete('cascade');
             $table->decimal('amount', 12, 2);
+            $table->decimal('fee_amount', 10, 2)->nullable();
+            $table->decimal('net_amount', 10, 2)->nullable();
             // Rekening/e-wallet tujuan, diambil dari payment_methods milik tenant ybs
             $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods')->onDelete('set null');
             // Snapshot detail rekening (type, name_payment, account_number, account_name) saat payout

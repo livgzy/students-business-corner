@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('xendit_status')->nullable();                      // status mentah dari Xendit
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('expired_at')->nullable();
- 
             $table->timestamps();
         });
     }
