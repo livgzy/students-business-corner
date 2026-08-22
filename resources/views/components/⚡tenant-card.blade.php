@@ -229,7 +229,7 @@ new class extends Component
                                         <div class="flex items-end justify-between mt-auto pt-2 border-t border-gray-100">
                                             @if($product->is_available && $tenant->is_open)
                                                 <div class="flex-1 pr-2 overflow-hidden">
-                                                    @if ($product->is_preorder)
+                                                @if ($product->is_preorder)
                                                     <div class="flex flex-col text-xs text-gray-500">
                                                         <div class="flex items-center space-x-1 mb-1">
                                                             <flux:icon.clock class="size-3 shrink-0" />
@@ -253,32 +253,38 @@ new class extends Component
                                                         </div>
                                                     </div>
                                                     @else
-                                                    <div class="flex items-center space-x-1 text-xs text-gray-500">
-                                                        <flux:icon.hand-platter class="size-4" />
-                                                        <span>Ready-To Serve</span>
-                                                    </div>
+                                                    <div class="flex items-center justify-between w-full gap-2">
+                                                        {{-- Status Ready-To-Serve --}}
+                                                        <div class="flex items-center space-x-1 text-xs text-gray-500 min-w-0">
+                                                            <flux:icon.hand-platter class="size-4 shrink-0" />
+                                                            <span class="truncate">Ready-To-Serve</span>
+                                                        </div>
                                                 
-                                                    @auth
-                                                        <button
-                                                            wire:click="addToCart({{ $product->id }})"
-                                                            wire:loading.attr="disabled"
-                                                            wire:target="addToCart({{ $product->id }})"
-                                                            class="cursor-pointer bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-700 transition flex items-center gap-1"
-                                                        >
-                                                            <flux:icon.loading
-                                                                class="size-5"
-                                                                wire:loading
+                                                        {{-- Tombol Pesan --}}
+                                                        @auth
+                                                            <button
+                                                                wire:click="addToCart({{ $product->id }})"
+                                                                wire:loading.attr="disabled"
                                                                 wire:target="addToCart({{ $product->id }})"
-                                                            />
-                                                            <flux:icon.plus
-                                                                class="size-5"
-                                                                wire:loading.remove
-                                                                wire:target="addToCart({{ $product->id }})"
-                                                            />
-                                                            Pesan
-                                                        </button>
-                                                    @endauth
-                                                @endif                                              
+                                                                class="shrink-0 cursor-pointer bg-orange-500 text-white px-3 py-1.5 rounded-lg text-xs hover:bg-orange-700 transition flex items-center gap-1"
+                                                            >
+                                                                <flux:icon.loading
+                                                                    class="size-4"
+                                                                    wire:loading
+                                                                    wire:target="addToCart({{ $product->id }})"
+                                                                />
+                                                
+                                                                <flux:icon.plus
+                                                                    class="size-4"
+                                                                    wire:loading.remove
+                                                                    wire:target="addToCart({{ $product->id }})"
+                                                                />
+                                                
+                                                                <span>Pesan</span>
+                                                            </button>
+                                                        @endauth
+                                                    </div>
+                                                @endif                                             
                                                 </div>
                                                     @auth 
                                                     @if ($product->tenant->pick_slot->isNotEmpty() && $product->is_preorder)                                                               
